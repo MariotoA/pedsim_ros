@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This scenario file was created by SGDiCoP on 2014-04-16T15:14:48-->
+<scenario>
+
+<!--Obstacles (ie walls)-->
+<obstacle x1="0" y1="0" x2="0" y2="3"/>
+<obstacle x1="0" y1="3" x2="10" y2="3"/>
+<obstacle x1="0" y1="0" x2="13" y2="0"/>
+<obstacle x1="10" y1="3" x2="10" y2="13"/>
+<obstacle x1="10" y1="13" x2="13" y2="13"/>
+<obstacle x1="13" y1="0" x2="13" y2="13"/>
+
+
+<!--Waypoints (incl. WaitingQueues)-->
+<!-- (x,y): position, r: radio-->
+<waypoint id="W1" x="1.5" y="1.5" r="0.5"/>
+<waypoint id="W2" x="11.5" y="1.5" r="0.5"/>
+<waypoint id="W3" x="11.5" y="11.5" r="0.5"/>
+
+<!-- WaitingQueues -->
+<!--queue id="info_desk" x="20" y="15" direction="0"/-->
+
+
+<!--Agents -->
+<!-- (x,y): position, n: number, (dx,dy): distribution, type: ADULT = 0, CHILD = 1,
+ROBOT = 2, ELDER = 3 -->
+
+
+<!--AgentClusters--> 
+<!-- Ver fichero de Vicente-->
+
+<agent x="4" y="1.5" n="1" dx="2" dy="1" type="0">
+<addwaypoint id="W2"/>
+<addwaypoint id="W3"/>
+<addwaypoint id="W2"/>
+<addwaypoint id="W1"/>
+</agent>
+
+<agent x="4" y="1.5" n="1" dx="2" dy="1" type="3">
+<addwaypoint id="W2"/>
+<addwaypoint id="W3"/>
+<addwaypoint id="W2"/>
+<addwaypoint id="W1"/>
+</agent>
+
+<!--
+<agent x="10" y="18" n="2" dx="5" dy="10" type="0">
+<addwaypoint id="D"/>
+<addwaypoint id="B"/>
+<addwaypoint id="A"/>
+<addwaypoint id="C"/>
+</agent>
+
+-->
+
+
+
+</scenario>
+

@@ -1,0 +1,41 @@
+<launch>
+<!-- some standard gazebo parameters -->
+<arg name="paused" default="false"/>
+<arg name="use_sim_time" default="true"/>
+<arg name="gui" default="true"/>
+<arg name="headless" default="false"/>
+<arg name="debug" default="false"/>
+
+<!-- simulator stuff -->
+<arg name="scene_file" default="$(find pedsim_simulator)scenarios/social_contexts_prueba.xml"/> ​ <!-- people number/movements, obstacles and robot pose setup -->
+
+
+<!-- this needs some additional work and explanations, other day -->
+<arg name="with_robot" default="true"/>
+<arg name="robot_mode" default="1"/>
+<arg name="max_robot_speed" default="1.5"/>
+<arg name="default_queue_size" default="10"/>
+<arg name="enable_groups" default="false"/>​ <!-- without groups of people -->
+<arg name="simulation_factor" default="0.5"/> ​ <!-- Speed up: antes = 1.5 -->
+<arg name="update_rate" default="25"/> ​ <!-- Hz: antes 25 -->
+<node name="pedsim_simulator" pkg="pedsim_simulator" type="pedsim_simulator" output="screen">
+<param name="scene_file" value="$(arg scene_file)" type="string"/>
+<param name="default_queue_size" value="$(arg default_queue_size)" type="int"/>
+<param name="robot_mode" value="$(arg robot_mode)" type="int"/>
+<param name="max_robot_speed" value="$(arg max_robot_speed)" type="double"/>
+<param name="enable_groups" value="$(arg enable_groups)" type="bool"/>
+<param name="simulation_factor" value="$(arg simulation_factor)" type="double"/>
+<param name="update_rate" value="$(arg update_rate)" type="double"/>
+</node>
+
+<!-- this node spawn pedsim actors to gazebo once, then the plugin updates their pose-->
+<node pkg="pedsim_gazebo_plugin" type="spawn_pedsim_agents.py" name="spawn_pedsim_agents" output="screen">
+</node>
+
+
+<!-- turtlebot2 stuff -->
+<include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch">
+<arg name="world_file" value="$(find pedsim_gazebo_plugin)/worlds/social_contexts_prueba.world"/> ​ <!-- world provided by the pedsim package -->
+</include> ​ <!-- and nothing more -->
+
+</launch>
