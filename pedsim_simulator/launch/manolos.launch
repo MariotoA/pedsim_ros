@@ -7,7 +7,7 @@
 <arg name="debug" default="false"/>
 
 <!-- simulator stuff -->
-<arg name="scene_file" default="$(find pedsim_simulator)scenarios/social_contexts_prueba.xml"/> ​ <!-- people number/movements, obstacles and robot pose setup -->
+<arg name="scene_file" default="$(find pedsim_simulator)/scenarios/social_contexts_prueba.xml"/> ​ <!-- people number/movements, obstacles and robot pose setup -->
 
 
 <!-- this needs some additional work and explanations, other day -->
@@ -19,13 +19,13 @@
 <arg name="simulation_factor" default="0.5"/> ​ <!-- Speed up: antes = 1.5 -->
 <arg name="update_rate" default="25"/> ​ <!-- Hz: antes 25 -->
 <node name="pedsim_simulator" pkg="pedsim_simulator" type="pedsim_simulator" output="screen">
-<param name="scene_file" value="$(arg scene_file)" type="string"/>
-<param name="default_queue_size" value="$(arg default_queue_size)" type="int"/>
-<param name="robot_mode" value="$(arg robot_mode)" type="int"/>
-<param name="max_robot_speed" value="$(arg max_robot_speed)" type="double"/>
-<param name="enable_groups" value="$(arg enable_groups)" type="bool"/>
-<param name="simulation_factor" value="$(arg simulation_factor)" type="double"/>
-<param name="update_rate" value="$(arg update_rate)" type="double"/>
+    <param name="scene_file" value="$(arg scene_file)" type="string"/>
+    <param name="default_queue_size" value="$(arg default_queue_size)" type="int"/>
+    <param name="robot_mode" value="$(arg robot_mode)" type="int"/>
+    <param name="max_robot_speed" value="$(arg max_robot_speed)" type="double"/>
+    <param name="enable_groups" value="$(arg enable_groups)" type="bool"/>
+    <param name="simulation_factor" value="$(arg simulation_factor)" type="double"/>
+    <param name="update_rate" value="$(arg update_rate)" type="double"/>
 </node>
 
 <!-- this node spawn pedsim actors to gazebo once, then the plugin updates their pose-->
@@ -34,9 +34,13 @@
 
 
 <!-- turtlebot2 stuff -->
-<include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch">
-<arg name="world_file" value="$(find pedsim_gazebo_plugin)/worlds/social_contexts_prueba.world"/> ​ <!-- world provided by the pedsim package -->
-</include> ​ <!-- and nothing more -->
+
+<arg name="launch_gazebo_sim" default="true"/>
+<include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch" if="$(arg launch_gazebo_sim)"> <!-- Notice that this file is only included if launch_gazebo_sim is true-->
+    <arg name="world_file" value="$(find pedsim_gazebo_plugin)/worlds/social_contexts_prueba.world"/> ​ 
+</include> ​ 
+
+<!-- and nothing more -->
 
 <!-- blob detector stuff -->
 <arg name="detection_id_increment" default="20"/> <!-- antes 20 -->
@@ -77,26 +81,27 @@
 <arg name="subscriber_queue_size" default="1"/>
 <arg name="laser_low_confidence_detections" default="true"/>
 <arg name="occlusion_geodesics" default="true"/>
-
+<arg name="world_frame" default="odom" />
 <group ns="/spencer/perception_internal/people_tracking" if="$(arg tracker)">
 
-<include file="$(find srl_nearest_neighbor_tracker)/launch/nnt.launch">
-<arg name="subscriber_queue_size" value="$(arg subscriber_queue_size)"/>
-<arg name="use_imm" value="true"/>
+    <include file="$(find srl_nearest_neighbor_tracker)/launch/nnt.launch">
+        <arg name="subscriber_queue_size" value="$(arg subscriber_queue_size)"/>
+        <arg name="use_imm" value="true"/>
 
-<arg name="occlusion_param_file" value="occlusion_geodesics_manager_dynamic.yaml" if="$(arg occlusion_geodesics)"/>
-<arg name="use_laser_shade_occlusion_manager" value="true" if="$(arg occlusion_geodesics)"/>
+        <arg name="world_frame" default="$(arg world_frame)"/>
+        <arg name="occlusion_param_file" value="occlusion_geodesics_manager_dynamic.yaml" if="$(arg occlusion_geodesics)"/>
+        <arg name="use_laser_shade_occlusion_manager" value="true" if="$(arg occlusion_geodesics)"/>
 
-</include>
+    </include>
 
-<!-- I think that the following params are not necessary -->
-<rosparam
-param="srl_nearest_neighbor_tracker/additional_low_confidence_detections" if="$(arg
-laser_low_confidence_detections)">/spencer/perception_internal/detected_person_association/lasers_high_recall_aggregated</rosparam>
+    <!-- I think that the following params are not necessary -->
+    <rosparam
+    param="srl_nearest_neighbor_tracker/additional_low_confidence_detections" if="$(arg
+    laser_low_confidence_detections)">/spencer/perception_internal/detected_person_association/lasers_high_recall_aggregated</rosparam>
 
-<rosparam
-param="srl_nearest_neighbor_tracker/additional_low_confidence_detections"
-unless="$(arg laser_low_confidence_detections)"></rosparam>
+    <rosparam
+    param="srl_nearest_neighbor_tracker/additional_low_confidence_detections"
+    unless="$(arg laser_low_confidence_detections)"></rosparam>
 
 </group>
 

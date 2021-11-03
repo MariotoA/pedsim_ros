@@ -17,6 +17,19 @@
       </geometry>
     </collision>
 
+     <inertial>
+          <mass>0.0001</mass>
+          <inertia>
+            <ixx>0.145833</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.145833</iyy>
+            <iyz>0</iyz>
+            <izz>0.125</izz>
+          </inertia>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+        </inertial>
+
     <visual name="visual">
       <geometry>
         <!-- <box>
