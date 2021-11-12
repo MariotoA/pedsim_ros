@@ -458,7 +458,7 @@
     <state world_name='default'>
       <sim_time>64 147000000</sim_time>
       <real_time>0 0</real_time>
-      <wall_time>1635931224 790833338</wall_time>
+      <wall_time>1636372523 436195339</wall_time>
       <iterations>0</iterations>
       <model name='TargetMark5'>
         <pose frame=''>2.17595 1.41037 0 0 -0 0</pose>
@@ -501,17 +501,17 @@
         </link>
       </model>
       <model name='grey_wall_4'>
-        <pose frame=''>0 0 0 0 -0 0</pose>
+        <pose frame=''>-5.05497 -3.0772 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>10 8 1.4 0 -0 1.57</pose>
+          <pose frame=''>4.94503 4.9228 1.4 0 -0 1.57</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='grey_wall_5'>
-        <pose frame=''>-0.016902 -9.98539 0 0 -0 0</pose>
+        <pose frame=''>-0.0169 -9.98539 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link'>
           <pose frame=''>11.4831 3.01461 1.4 0 -0 0</pose>
@@ -546,7 +546,7 @@
     </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose frame=''>14.8614 0.403976 5.4917 0 0.745798 2.80021</pose>
+        <pose frame=''>2.89745 2.00633 11.142 4.4e-05 1.5698 1.12026</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>

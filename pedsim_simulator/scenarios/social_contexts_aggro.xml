@@ -16,6 +16,9 @@
 <waypoint id="W1" x="1.5" y="1.5" r="0.5"/>
 <waypoint id="W2" x="11.5" y="1.5" r="0.5"/>
 <waypoint id="W3" x="11.5" y="11.5" r="0.5"/>
+<waypoint id="W4" x="2.5" y="1.5" r="0.5"/>
+<waypoint id="W6" x="0.5" y="1.5" r="0.5"/>
+<waypoint id="W7" x="4.5" y="1.5" r="0.5"/>
 
 <!-- WaitingQueues -->
 <!--queue id="info_desk" x="20" y="15" direction="0"/-->
@@ -29,14 +32,15 @@ ROBOT = 2, ELDER = 3 -->
 <!--AgentClusters--> 
 <!-- Ver fichero de Vicente-->
 
-<agent x="4" y="1.5" n="1" dx="2" dy="1" type="0">
-<addwaypoint id="W2"/>
-<addwaypoint id="W1"/>
+<agent x="2.5" y="1.5" n="1" dx="2" dy="1" type="3">
+     <addwaypoint id="W4"/>
+     <addwaypoint id="W6"/>
+     <addwaypoint id="W7"/>
 </agent>
 
-<agent x="4" y="1.5" n="1" dx="2" dy="1" type="3">
-<addwaypoint id="W2"/>
-<addwaypoint id="W1"/>
+<agent x="11.5" y="1.5" n="1" dx="2" dy="1" type="3">
+<!-- <addwaypoint id="W2"/>
+<addwaypoint id="W1"/> -->
 </agent>
 
 <!--
