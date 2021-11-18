@@ -16,7 +16,7 @@
 <arg name="max_robot_speed" default="1.5"/>
 <arg name="default_queue_size" default="10"/>
 <arg name="enable_groups" default="false"/>​ <!-- without groups of people -->
-<arg name="simulation_factor" default="0.0625"/> ​ <!-- Speed up: antes = 0.0001 original = 1.5 -->
+<arg name="simulation_factor" default="0.03"/> ​ <!-- Speed up: antes = 0.0001 original = 1.5 -->
 <arg name="update_rate" default="25"/> ​ <!-- Hz: antes 25 -->
 <node name="pedsim_simulator" pkg="pedsim_simulator" type="pedsim_simulator" output="screen">
     <param name="scene_file" value="$(arg scene_file)" type="string"/>
